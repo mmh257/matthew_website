@@ -1,181 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matthew's Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Hui Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#experience">Experience & Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <nav class="nav-container">
+    <div class="logo">Matthew Hui</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="content/Matthew_Hui_Resume.pdf" target="_blank">Resume</a></li>
+    </ul>
+  </nav>
 
-    <section id="home" class="landing">
-        <div class="container">
-            <h1>Hi! I'm Matthew</h1>
-            <p> [Placeholder Image] </p>
-            <div class="scroll-down" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' });">
-                ↓ Scroll Down
-            </div>
+  <header id="home" class="hero-section">
+    <div class="hero-content">
+      <h1>Hi, I'm Matthew Hui!</h1>
+      <p>Design Verification Engineer</p>
+      <a href="#about" class="cta-button">Learn About Me</a>
+    </div>
+  </header>
+
+  <section id="about" class="section">
+  <h2>About Me</h2>
+  <div class="about-container">
+    <div class="about-images">
+      <img src="content/Headshot.jpeg" alt="Professional Headshot" />
+      <img src="content/action-headshot.jpg" alt="Action Headshot" />
+    </div>
+    <div class="about-text">
+      <p>Hi! I'm a recent graduate of Cornell University with a Bachelor's of Science in Electrical & Computer Engineering.
+        I love solving complex problems and I'm interested in computer architecture, design verification, and VLSI with 
+        a goal of becoming an ASIC architect. Throughout my undergrad, I've taken a wide variety of courses spanning nearly
+        all branches of ECE including: Computer Architecture and ASIC Design (Digital), Analog IC Design and Advanced VLSI 
+        Analog Design (Analog), Digital Signal Processing & Statistical Inference and Signals & Systems (DSP), Microcontroller Design 
+        and Embedded Systems (Embedded).
+      </p> <br> 
+      <p>In July, I'll be starting work as a Design Verification Engineering working on verification of various memory 
+            subsystems. I'm excited to use everything I've learned from school & past experiences to learn what it takes 
+            to become a great Verification Engineer and learn relevant industry standard tools like UVM and SV.</p> <br> 
+      <p>Outside of engineering, I love hiking, exploring national parks, playing pickleball and Ultimate Frisbee!
+        I'm always looking for fun pickup ultimate frisbee or new hiking trails to explore. 
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="section">
+  <h2>Experience</h2>
+  <div class="timeline">
+    <div class="timeline-entry">
+      <div class="timeline-content">
+        <h3>NVIDIA – Verification Engineer</h3>
+        <span class="timeline-date">Jul 2025 – Present</span>
+        <p>Memory Subsystem Verification</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="timeline-content">
+        <h3>Keysight Technologies – Digital ASIC Design Intern</h3>
+        <span class="timeline-date">Jun 2024 – Aug 2024</span>
+        <p>Design and Verified custom deconcentrator block on a next-gen DSP ASIC.</p>
+      </div>
+    </div>
+    <div class="timeline-entry">
+      <div class="timeline-content">
+        <h3>Sensata – Electrical Design Intern</h3>
+        <span class="timeline-date">May 2023 – Aug 2023</span>
+        <p>Developed alternative characterization testing framework for a next-gen heavy automobile ASIC</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <h2>Projects</h2>
+  <div class="projects">
+
+    <div class="project-card">
+      <div class="project-header project-toggle">DSP Deconcentrator</div>
+      <div class="project-summary">
+        <img src="content/deconcentrator-block.png" alt="Project Thumbnail" />
+        <p>Custom RTL module to support data demuxing between on-chip 
+            regions of a next-gen digital signal processing ASIC.</p>
+        <div class="tags">
+          <span>SystemVerilog</span><span>Verilog</span><span>Python</span><span>Cadence Genus</span>
         </div>
-    </section>
+      </div>
+      <div class="project-body">
+        <p> During my time at Keysight Technologies,
+            I created a block design, RTL modules and conducted 
+            first pass verification of a small block for an upcoming ASIC. 
+            This project highlights many of the 
+            steps across the ASIC design process, starting from translating specifications 
+            into a block design, then moving to conducting RTL design applying synthesizable 
+            principles while co-designing these blocks through various testbenches for verification. 
+            At a high level, the block I designed and worked on is a demuxer with additional 
+            FIFO logic where it serves as a buffer point between two different regions of the 
+            chip - a single streamed input and a 16-stream output. RTL modules and submodules 
+            were assembled using verilog, using synthesizable and efficient design where 
+            applicable while testbenches and golden modules for verification were built 
+            with SystemVerilog and Python. </p>
+      </div>
+    </div>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-block professional">
-                <div class="about-text">
-                    <h3>About Myself</h3>
-                    <p>Hi, I'm Matthew Hui, a senior at Cornell University studying Electrical & Computer Engineering! 
-                        I'm really excited to pursue a career in Design Verification and I love all things 
-                        related to computers! My interests lie in chip design & verification and I have previous experience 
-                        working as a Digital Design Engineer working on both the RTL modeling and verification of 
-                        blocks on a custom ASIC.  
-                    </p>
-                </div>
-                <div class="about-image">
-                    <img src="placeholder-headshot.jpg" alt="Professional Headshot">
-                </div>
-            </div>
-            <div class="about-block personal">
-                <div class="about-image">
-                    <img src="placeholder-personal.jpg" alt="Personal Photo">
-                </div>
-                <div class="about-text">
-                    <h3>Personal Interests</h3>
-                    <p> Outside of the workplace, I really enjoy spending time outdoors whether it be hiking or camping in different parks!.</p>
-                </div>
-            </div>
+    <div class="project-card">
+      <div class="project-header project-toggle">MI Cache Coherence Designs</div>
+      <div class="project-summary">
+        <img src="content/asic-image.png" alt="Project Thumbnail" />
+        <p>An implementation of MI snoopy protocol cache coherence in verilog</p>
+        <div class="tags">
+          <span>System Verilog</span><span>Verilog</span><span>Cadence Innovus (pnr)</span><span>Synopsys VCS (FFGL & RTL sim)</span>
         </div>
-    </section>
+      </div>
+      <div class="project-body">
+        <p>This was my final project for ECE 6745, Complex ASIC Design taught by Professor Christopher Batten, where 
+            I implemented a basic Modified-Invalid cache coherence protocol for a two cache system. In this project, 
+            I implemented a custom interconnect in verilog and modified pre-developed caches from previous labs to 
+            support proper tagging of cachelines as modified / invalid for cache coherence. I also developed custom 
+            test harness and Python models using the PyMTL3 framework to validate my RTL designs. Once these designs were 
+            developed, they were pushed through the backend ASIC flow starting from synthesis to place and route and then 
+            subsequently verified through ffgl and bagl tests through Synopsys VCS and Cadence Innovus tools. 
+        </p>
+      </div>
+    </div>
 
-    <section id="experience" class="experience-projects">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Jul 2025 - Present</div>
-                    <div class="timeline-content">
-                        <h3>Verification Engineer</h3>
-                        <p>NVIDIA</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Jun 2024 - Aug 2024</div>
-                    <div class="timeline-content">
-                        <h3>Digital ASIC Design Intern</h3>
-                        <p>Keysight Technologies</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">May 2023 - Aug 2023</div>
-                    <div class="timeline-content">
-                        <h3>Sensata Technologies</h3>
-                        <p>Electrical Design Intern</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">May 2022 - Aug 2022</div>
-                    <div class="timeline-content">
-                        <h3>Starbucks</h3>
-                        <p>Barista</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Projects</h2>
-            <div class="projects">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="placeholder-project1.jpg" alt="Project 1">
-                    </div>
-                    <div class="project-details">
-                        <h3>Deconcentrator Design & Verification for DSP ASIC</h3>
-                        <div class="project-skills">
-                            <span>Verilog</span>
-                            <span>SystemVerilog</span>
-                            <span>Python</span>
-                            <span>Cadence Genus & SimVision</span>
-                        </div>
-                        <p class="project-description">
-                            In this project, I created a block design, RTL design of modules and conducted 
-                            first pass verification of a small block for an upcoming ASIC design during 
-                            my internship at Keysight Technologies. This project highlights many of the 
-                            steps across the ASIC design process, starting from translating specifications 
-                            into a block design, then moving to conducting RTL design applying synthesizable 
-                            principles while co-designing these blocks through various testbenches for verification. 
-                            At a high level, the block I designed and worked on is a demuxer with additional 
-                            FIFO logic where it serves as a buffer point between two different regions of the 
-                            chip - a single streamed input and a 16-stream output. RTL modules and submodules 
-                            were assembled using verilog, using synthesizable and efficient design where 
-                            applicable while testbenches and golden modules for verification were built 
-                            with SystemVerilog and Python. 
-                        </p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="placeholder-project2.jpg" alt="Project 2">
-                    </div>
-                    <div class="project-details">
-                        <h3>Project Title 2</h3>
-                        <div class="project-skills">
-                            <span>Skill 1</span>
-                            <span>Skill 2</span>
-                            <span>Skill 3</span>
-                            <span>Skill 4</span>
-                        </div>
-                        <p class="project-description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="placeholder-project3.jpg" alt="Project 3">
-                    </div>
-                    <div class="project-details">
-                        <h3>Project Title 3</h3>
-                        <div class="project-skills">
-                            <span>Skill 1</span>
-                            <span>Skill 2</span>
-                            <span>Skill 3</span>
-                            <span>Skill 4</span>
-                        </div>
-                        <p class="project-description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <div class="project-card">
+      <div class="project-header project-toggle">MiniGPU</div>
+      <div class="project-summary">
+        <img src="content/minigpu-image.png" alt="Project Thumbnail" />
+        <p>An implementation of a small-scale 4-core 16-thread GPU supporting vector addition and matrix multiplication.</p>
+        <div class="tags">
+          <span>System Verilog</span><span>Verilog</span><span>CocoTB</span><span>Python</span>
         </div>
-    </section>
+      </div>
+      <div class="project-body">
+        <p> This project was a self-project exploration of how GPUs work. I implemented a simple GPU, modeling the 
+            streaming multiprocessor units found in NVIDIA GPUs which contains 4 cores, each capable of performing 
+            4-thread vector wide processes. Each core itself has 4 compute units which are individual ALUs, Register Files, 
+            and load store units with shared a shared fetcher and decoder. MiniGPU is a very simple GPU with no 
+            wave pooling or branch prediction and I created a custom 12-set ISA consisting of atomic operations such 
+            as load, store, add, sub, multiplying, register loading, and more. Once all of the components were developed 
+            in RTL, two kernels using the custom ISA were written to verify that the module works for vector addition 
+            and matrix multiplication.
+        </p>
+      </div>
+    </div>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/mhui81/" target="_blank" rel="noopener noreferrer">
-                    <img src="linkedin-icon.png" alt="LinkedIn">
-                </a>
-                <a href="https://github.com/mmh257" target="_blank" rel="noopener noreferrer">
-                    <img src="github-icon.png" alt="GitHub">
-                </a>
-            </div>
-        </div>
-    </section>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Matthew Hui. All Rights Reserved.</p>
-    </footer>
+
+
+
+  <section id="contact" class="section">
+    <h2>Contact Me</h2>
+    <div class="contact-links">
+        <a href="https://www.linkedin.com/in/mhui81/" target="_blank">
+        <img src="content/linkedin-image.png" alt="LinkedIn"/>
+        </a>
+
+        <a href="https://github.com/mmh257" target="_blank">
+        <img src="content/github-image.png" alt="GitHub"/>
+        </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Matthew Hui. Built with HTML, CSS, and JavaScript.</p>
+  </footer>
 </body>
-</html> 
+</html>

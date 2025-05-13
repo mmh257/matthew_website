@@ -1,116 +1,94 @@
-// Wait for the DOM to be fully loaded
-document.addEventListener("DOMContentLoaded", function () {
-  // Navigation highlighting
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll("nav a");
+function revealTimelineEntries() {
+  const entries = document.querySelectorAll('.timeline-entry');
 
-  // Function to highlight the active navigation link
-  function highlightNavLink() {
-    let currentSectionId = "";
-    let scrollPosition = window.scrollY;
-
-    // Find the current section
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.clientHeight;
-
-      if (
-        scrollPosition >= sectionTop &&
-        scrollPosition < sectionTop + sectionHeight
-      ) {
-        currentSectionId = section.id;
-      }
-    });
-
-    // Highlight the corresponding nav link
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${currentSectionId}`) {
-        link.classList.add("active");
-      }
-    });
-  }
-
-  // Add scroll event listener
-  window.addEventListener("scroll", highlightNavLink);
-
-  // Smooth scrolling for navigation links
-  navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
-
-      window.scrollTo({
-        top: targetSection.offsetTop,
-        behavior: "smooth",
-      });
-    });
-  });
-
-  // Add a class to the navigation when scrolled
-  function toggleStickyNav() {
-    const nav = document.querySelector("nav");
-    if (window.scrollY > 100) {
-      nav.classList.add("scrolled");
-    } else {
-      nav.classList.remove("scrolled");
-    }
-  }
-
-  window.addEventListener("scroll", toggleStickyNav);
-
-  // Animate elements when they come into view
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.1,
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
+  const observer = new IntersectionObserver((entriesList) => {
+    entriesList.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("animate");
+        entry.target.classList.add('visible');
         observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.15 });
 
-  // Elements to animate
-  const animateElements = document.querySelectorAll(
-    ".about-block, .timeline-item, .project-card"
-  );
-  animateElements.forEach((element) => {
-    element.classList.add("fade-in");
-    observer.observe(element);
+  entries.forEach(entry => observer.observe(entry));
+}
+
+function revealSections() {
+  const sections = document.querySelectorAll('.section');
+
+  const observer = new IntersectionObserver((entriesList) => {
+    entriesList.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  sections.forEach(section => observer.observe(section));
+}
+
+function enableSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 60,
+          behavior: "smooth"
+        });
+      }
+    });
   });
+}
 
-  // Add animation classes to CSS
-  const style = document.createElement("style");
-  style.textContent = `
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .fade-in.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        nav.scrolled {
-            background-color: rgba(95, 113, 97, 0.95);
-            padding: 0.7rem 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav a.active {
-            color: var(--sage-accent);
-            font-weight: 700;
-        }
+function enableProjectAccordion() {
+  const headers = document.querySelectorAll('.project-toggle');
 
-    `;
-  document.head.appendChild(style);
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const card = header.closest('.project-card');
+      const body = card.querySelector('.project-body');
+      const isExpanded = body.classList.contains('expanded');
+
+      // Collapse all others
+      document.querySelectorAll('.project-body.expanded').forEach(panel => {
+        panel.style.height = panel.scrollHeight + 'px'; // set current height
+        requestAnimationFrame(() => {
+          panel.style.height = '0px';
+        });
+        panel.classList.remove('expanded');
+        panel.previousElementSibling.classList.remove('active');
+      });
+
+      if (!isExpanded) {
+        body.classList.add('expanded');
+        header.classList.add('active');
+        body.style.height = body.scrollHeight + 'px';
+
+        body.addEventListener('transitionend', function handler() {
+          body.style.height = 'auto'; // allow responsive content
+          body.removeEventListener('transitionend', handler);
+        });
+      } else {
+        body.style.height = body.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          body.style.height = '0px';
+        });
+        body.classList.remove('expanded');
+        header.classList.remove('active');
+      }
+    });
+  });
+}
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  revealTimelineEntries();
+  revealSections();
+  enableSmoothScroll();
+  enableProjectAccordion();
 });
+
